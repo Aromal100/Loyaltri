@@ -89,7 +89,7 @@ export class AllEmployees
         await this.city2.click();
         await this.code2.fill(data.postalCode);
         await this.continue.click();
-
+await hello.click();
 
     }
 
