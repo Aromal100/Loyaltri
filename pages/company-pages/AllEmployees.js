@@ -6,7 +6,7 @@ export class AllEmployees
         this.gohome=page.locator("//span[text()='Go Home']/parent::button"); 
         this.feedbackCancel=page.locator("//button[@class='ant-modal-close']");
         this.company=page.locator("//button[contains(@class,'ant-dropdown-trigger')]");
-        this.qaCompany=page.locator("//p[text()='Qa Company Pvt Ltd']/parent::div");
+        this.qaCompany=page.locator("//p[text()='Qa Company Pvt Ltd']/parent::div").first();
         this.addEmp=page.locator("//span[text()='Add Employee']/parent::button");
         this.firstname=page.getByPlaceholder("Enter First Name");
         this.lastname=page.getByPlaceholder("Enter Last Name");
@@ -55,15 +55,15 @@ export class AllEmployees
     async selectCompany()
     {
          await this.gohome.click({ timeout: 3000 }).catch(() => {});
-        await this.feedbackCancel.click();
-        await this.company.click();
-        await this.qaCompany.click();
-        await this.feedbackCancel.click();
+    }
+
+    async goToAddEmployees()
+    {
+        await this.addEmp.click();
     }
 
     async employeeOnBoarding(data)
     {
-        await this.addEmp.click();
         await this.firstname.fill(data.name);
         await this.lastname.fill(data.lastname);
         await this.email.fill(data.email);
