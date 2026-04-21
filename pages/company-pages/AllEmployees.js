@@ -40,6 +40,7 @@ export class AllEmployees
         this.categoryOpt=page.locator("//div[@title='Advertising']");
         this.reportTo=page.locator("//div[@class='ant-select-selector']").nth(5);
         this.reportToOpt=page.locator("//div[@title='Ram  R']");
+        //this.reportToOpt=page.locator("//div[@title='Raj  Malhotra']");
         this.datetojoin=page.locator("//div[contains(@class,'ant-picker ')]").first();
         this.location=page.locator("//div[@class='ant-select-selector']").nth(6);
         this.locOpt=page.locator("//div[@title='Main Branch']");
@@ -55,6 +56,10 @@ export class AllEmployees
     async selectCompany()
     {
          await this.gohome.click({ timeout: 3000 }).catch(() => {});
+         await this.feedbackCancel.click();
+         await this.company.click();
+         await this.qaCompany.click();
+        await this.feedbackCancel.click();
     }
 
     async goToAddEmployees()

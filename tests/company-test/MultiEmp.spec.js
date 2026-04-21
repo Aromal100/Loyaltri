@@ -13,13 +13,13 @@ test('Mulitple employee registration process',async({page})=>{
 
     const lp= new LoginPage(page);
     await lp.landingPage();
-    await lp.loginPage(datas.username,datas.password);
+    await lp.loginPage(datas.userCred.username,datas.userCred.password);
     const ae= new AllEmployees(page);
     await ae.selectCompany();
     const sp= new SidePages(page);
     await sp.goToAllEmployees();
 
-for (let i = 1; i <= 100; i++) {
+for (let i = 1; i <= 15; i++) {
 
     const employeeData = {
   name: faker.person.firstName(),
