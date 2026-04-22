@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test';
 import {LoginPage} from '../../pages/login/LoginPage.js'
 import datas from '../../config/logindata.json'
-import {AllEmployees} from '../../pages/company-pages/AllEmployees.js'
+import {AllEmployees} from '../../pages/admin-company-pages/AllEmployees.js'
 import {SidePages} from '../../pages/common-pages/SidePages.js'
 import { faker } from '@faker-js/faker';
 

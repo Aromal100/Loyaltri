@@ -1,9 +1,10 @@
 import {test,expect} from '@playwright/test';
 import {LoginPage} from '../../pages/login/LoginPage.js'
 import datas from '../../config/logindata.json'
-import {Leave} from '../../pages/settings-pages/Leave.js'
+import {Leave} from '../../pages/admin-settings-pages/Leave.js'
 import {SidePages} from '../../pages/common-pages/SidePages.js'
-import{AllEmployees} from '../../pages/company-pages/AllEmployees.js'
+import{AllEmployees} from '../../pages/admin-company-pages/AllEmployees.js'
+import { faker } from '@faker-js/faker';
 
 test('Add leave type function',async({page})=>{
 
@@ -17,8 +18,11 @@ test('Add leave type function',async({page})=>{
     const sp= new SidePages(page);
     await sp.goToLeavePage();
     const l= new Leave(page);
-    await l.addLeaveType("wedcwq","30");
-    await page.pause();
+
+    const word = faker.lorem.word(); 
+
+    await l.addLeaveType(word,"30","3");
+  
    
 
 

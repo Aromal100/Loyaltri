@@ -29,7 +29,7 @@ export class Leave
     }
 
 
-    async addLeaveType(name,days)
+    async addLeaveType(name,days,day)
     {
         await this.addLeave.click();
         await this.startFromScarch.click();
@@ -38,7 +38,7 @@ export class Leave
         await this.enterDays1.fill(days);
         await this.selectBox1.click();
         await this.monthly.click();
-        await this.enterDays2.fill(days);
+        await this.enterDays2.fill(day);
         await this.selectBox2.click();
          await this.lapse.waitFor();
         await this.lapse.click();

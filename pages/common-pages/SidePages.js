@@ -7,6 +7,8 @@ export class SidePages
         this.allEmp=page.locator("//a[@href='/employees']");
         this.settings=page.locator("//p[text()='Settings']/parent::div")
         this.leave=page.locator("//a[@href='/Leave']");
+        this.time=page.locator("//p[text()='Time']/parent::div");
+        this.myleave=page.locator("//a[@href='/myleaves']");
       
     }
 
@@ -22,5 +24,14 @@ export class SidePages
         await this.leave.click();
 
     }
+
+     async goToMyLeave()
+    {
+        await this.time.click();
+        await this.myleave.click();
+
+    }
+
+
 
 }
