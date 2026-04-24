@@ -71,7 +71,7 @@ test.only('Add Shift scheme function',async({page})=>{
 
     await s.addShiftScheme(word);
     
-    await page.waitForTimeout(5000); // Wait to see the result
+    await page.pause();
 
    //await expect(s.shiftCreatedMessage).toHaveText("Shift has been created.");
 

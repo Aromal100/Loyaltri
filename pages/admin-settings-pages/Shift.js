@@ -74,9 +74,7 @@ export class Shift {
 
     }
 
-    async scrollWeekContainer() {
-    await this.page.mouse.wheel(0, 300);
-}
+  
 
     async addShiftScheme(name) {
         await this.shiftScheme.click();
@@ -85,22 +83,10 @@ export class Shift {
         await this.shiftOpt.click();
         await this.selectShift.click();
 
-        //const totalCells = await this.dropCells.count();
-
-
-        // while (await this.page.getByText("Drop here").count() > 0) {
-        //     const source = this.page.locator(".relative.min-w-32").nth(1); // re-fetch
-        //     const target = this.page.getByText("Drop here").first(); // always next empty
-
-        //     await source.hover();
-        //     await this.page.mouse.down();
-        //     await target.hover();
-        //     await this.page.waitForTimeout(300);
-        //     await this.page.mouse.up();
-        // }
-
-        // Drag first shift to Monday - Friday (first 5 empty cells)
-        for (let i = 0; i < 5; i++) {
+        await this.page.evaluate(() => {
+    document.body.style.zoom = "0.75";
+});
+         for (let i = 0; i < 5; i++) {
             const target = this.dropCells.first();
             await target.scrollIntoViewIfNeeded();
             await this.page.waitForTimeout(200);
@@ -145,7 +131,6 @@ export class Shift {
 
 
         for (let i = 0; i < 5; i++) {
-             await this.scrollWeekContainer();
             const target = this.dropCells.first();
             await target.scrollIntoViewIfNeeded();
             await this.page.waitForTimeout(200);
@@ -153,7 +138,6 @@ export class Shift {
         }
 
           for (let i = 0; i < 2; i++) {
-             await this.scrollWeekContainer();
             const target = this.dropCells.first();
             await target.scrollIntoViewIfNeeded();
             await this.page.waitForTimeout(200);
@@ -161,7 +145,6 @@ export class Shift {
         }
 
         for (let i = 0; i < 5; i++) {
-             await this.scrollWeekContainer();
             const target = this.dropCells.first();
             await target.scrollIntoViewIfNeeded();
             await this.page.waitForTimeout(200);
@@ -169,16 +152,12 @@ export class Shift {
         }
 
           for (let i = 0; i < 2; i++) {
-             await this.scrollWeekContainer();
             const target = this.dropCells.first();
             await target.scrollIntoViewIfNeeded();
             await this.page.waitForTimeout(200);
             await this.drag1.dragTo(target);
         }
-
-
-
-        
+   
 
         await this.saveCon.click();
         await this.proceed.click();
