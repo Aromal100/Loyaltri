@@ -14,7 +14,7 @@ export class LoginPage
 
     async landingPage()
     {
-        await this.page.goto(datas.userCred.url); 
+        await this.page.goto(datas.adminCred.url); 
     }
 
     async loginPage(email,pass)

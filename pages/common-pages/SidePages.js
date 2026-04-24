@@ -9,6 +9,7 @@ export class SidePages
         this.leave=page.locator("//a[@href='/Leave']");
         this.time=page.locator("//p[text()='Time']/parent::div");
         this.myleave=page.locator("//a[@href='/myleaves']");
+        this.shift=page.locator("//a[@href='/Shift']");
       
     }
 
@@ -30,6 +31,12 @@ export class SidePages
         await this.time.click();
         await this.myleave.click();
 
+    }
+
+    async goToShift()
+    {
+        await this.settings.click();
+        await this.shift.click();
     }
 
 
