@@ -30,6 +30,8 @@ export class Shift {
         this.dropCells = page.getByText("Drop here");
         this.saveCon = page.locator("//div[text()='Save & Continue']/ancestor::button");
         this.proceed = page.locator("//span[text()='Yes,Proceed']/parent::button");
+        this.avEmployee=page.getByRole('checkbox', { name: 'Not Assigned to Any Shift' });
+        this.shiftSchemeCreatedMessage=page.locator(".ant-notification-notice-description").last();
 
 
 
@@ -161,6 +163,14 @@ export class Shift {
 
         await this.saveCon.click();
         await this.proceed.click();
+        await this.avEmployee.check();
+        await this.saveCon.click();
+        await this.proceed.click();
+
+
+
+
+
 
     }
 

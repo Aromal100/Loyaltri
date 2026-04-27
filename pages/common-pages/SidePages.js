@@ -7,9 +7,11 @@ export class SidePages
         this.allEmp=page.locator("//a[@href='/employees']");
         this.settings=page.locator("//p[text()='Settings']/parent::div")
         this.leave=page.locator("//a[@href='/Leave']");
-        this.time=page.locator("//p[text()='Time']/parent::div");
+        this.time=page.locator("//p[text()='Time']/parent::div").first();
         this.myleave=page.locator("//a[@href='/myleaves']");
         this.shift=page.locator("//a[@href='/Shift']");
+        this.userPrivileges=page.locator("//a[@href='/userPrivileges']");
+        this.employeeAttendance=page.locator("//a[@href='/employee_attendance']").first();
       
     }
 
@@ -37,6 +39,18 @@ export class SidePages
     {
         await this.settings.click();
         await this.shift.click();
+    }
+
+    async goToUserPrivileges()
+    {
+        await this.settings.click();
+        await this.userPrivileges.click();
+    } 
+
+    async goToEmployeeAttendance()
+    {
+        await this.time.click();
+        await this.employeeAttendance.click();
     }
 
 

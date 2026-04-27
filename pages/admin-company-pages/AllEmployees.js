@@ -58,9 +58,9 @@ export class AllEmployees
     {
          await this.gohome.click({ timeout: 3000 }).catch(() => {});
           await this.feedbackCancel.click().catch(() => {});
-        //  await this.company.click();
-        //  await this.qaCompany.click();
-        // await this.feedbackCancel.click();
+        //   await this.company.click();
+        //   await this.qaCompany.click();
+        //  await this.feedbackCancel.click();
     }
 
     async goToAddEmployees()

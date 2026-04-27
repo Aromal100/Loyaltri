@@ -7,6 +7,7 @@ import{AllEmployees} from '../../pages/admin-company-pages/AllEmployees.js'
 import { faker } from '@faker-js/faker';
 
 
+
 test('Add morning shift function',async({page})=>{
 
     const lp= new LoginPage(page);
@@ -70,10 +71,7 @@ test.only('Add Shift scheme function',async({page})=>{
     const word = faker.word.noun(); 
 
     await s.addShiftScheme(word);
-    
-    await page.pause();
-
-   //await expect(s.shiftCreatedMessage).toHaveText("Shift has been created.");
+     await expect(s.shiftSchemeCreatedMessage).toHaveText("Shift Scheme has been assigned to selected employees.");
 
   
    
