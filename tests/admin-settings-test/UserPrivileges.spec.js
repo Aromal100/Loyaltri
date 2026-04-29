@@ -12,7 +12,7 @@ test('Add new employess to web punch',async({page})=>{
     await lp.loginPage(datas.adminCred.username,datas.adminCred.password);
 
     const ae= new AllEmployees(page);
-    await ae.selectCompany();
+    //await ae.selectCompany();
 
     const sp= new SidePages(page);
     await sp.goToUserPrivileges();

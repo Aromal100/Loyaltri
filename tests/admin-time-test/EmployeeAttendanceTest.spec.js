@@ -12,14 +12,29 @@ test('Checking the Employee Attendance details',async({page})=>{
     await lp.landingPage();
     await lp.loginPage(datas.adminCred.username,datas.adminCred.password);
 
-    const ae= new AllEmployees(page);
-    await ae.selectCompany();
+    // const ae= new AllEmployees(page);
+    // await ae.selectCompany();
 
     const sp= new SidePages(page);
     await sp.goToEmployeeAttendance();
 
     const ea= new EmployeeAttendance(page)
     await ea.viewAttendanceTimeline();
+
+})
+
+test.only('Verify the OT adding to the employee',async({page})=>{
+
+    const lp= new LoginPage(page);
+    await lp.landingPage();
+    await lp.loginPage(datas.adminCred.username,datas.adminCred.password);
+
+    const sp= new SidePages(page);
+    await sp.goToEmployeeAttendance();
+
+    const ea= new EmployeeAttendance(page);
+    await ea.addOtFunction();
+    await expect(ea.OTCreatedMessage).toHaveText("Attendance status has been updated to Overtime");
 
 
 

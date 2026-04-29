@@ -1,31 +1,30 @@
 import {test,expect} from '@playwright/test';
 import {LoginPage} from '../../pages/login/LoginPage.js'
 import datas from '../../config/logindata.json'
-import {Leave} from '../../pages/admin-settings-pages/Leave.js'
+import {WorkPolicy} from '../../pages/admin-settings-pages/WorkPolicy.js'
 import {SidePages} from '../../pages/common-pages/SidePages.js'
 import{AllEmployees} from '../../pages/admin-company-pages/AllEmployees.js'
 import { faker } from '@faker-js/faker';
 
-test('Add leave type function',async({page})=>{
+
+test('Checking Work policy creation',async({page})=>{
 
     const lp= new LoginPage(page);
     await lp.landingPage();
     await lp.loginPage(datas.adminCred.username,datas.adminCred.password);
 
-    const ae= new AllEmployees(page);
-    //await ae.selectCompany();
+    // const ae= new AllEmployees(page);
+    // await ae.selectCompany();
 
     const sp= new SidePages(page);
-    await sp.goToLeavePage();
-    const l= new Leave(page);
+    await sp.goToWorkPolicy();
 
-    const word = faker.lorem.word(); 
-
-    await l.addLeaveType(word,"30","3");
+    const wp= new WorkPolicy(page);
+    const word = faker.lorem.word();
+    await wp.createWorkPolicy(word);
+    await expect(wp.workPolicyCreatedMessage).toHaveText("Work Policy has been assigned to selected employees.");
   
-   
+
 
 
 })
-
-

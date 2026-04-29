@@ -14,7 +14,7 @@ test('Verify user check-in and check-out functionality',async({page})=>{
     await lp.loginPage(datas.userCred.username,datas.userCred.password);
 
     const ae= new AllEmployees(page);
-    await ae.selectCompany();
+    //await ae.selectCompany();
 
     const cc= new CheckInOut(page);
     await cc.checkInFn();

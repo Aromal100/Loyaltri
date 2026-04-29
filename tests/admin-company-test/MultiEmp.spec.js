@@ -14,8 +14,8 @@ test('Mulitple employee registration process',async({page})=>{
     const lp= new LoginPage(page);
     await lp.landingPage();
     await lp.loginPage(datas.adminCred.username,datas.adminCred.password);
-    const ae= new AllEmployees(page);
-    await ae.selectCompany();
+     const ae= new AllEmployees(page);
+    // await ae.selectCompany();
     const sp= new SidePages(page);
     await sp.goToAllEmployees();
 

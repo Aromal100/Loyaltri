@@ -14,17 +14,16 @@ test('Add morning shift function',async({page})=>{
     await lp.landingPage();
     await lp.loginPage(datas.adminCred.username,datas.adminCred.password);
 
-    const ae= new AllEmployees(page);
-    await ae.selectCompany();
+    // const ae= new AllEmployees(page);
+    // await ae.selectCompany();
 
     const sp= new SidePages(page);
     await sp.goToShift();
-    const s= new Shift(page);
 
+    const s= new Shift(page);
     const word = faker.lorem.word(); 
 
     await s.addMorningShift(word);
-
     await expect(s.shiftCreatedMessage).toHaveText("Shift has been created.");
   
 }
@@ -37,7 +36,7 @@ test('Add Night shift function',async({page})=>{
     await lp.loginPage(datas.adminCred.username,datas.adminCred.password);
 
     const ae= new AllEmployees(page);
-    await ae.selectCompany();
+    //await ae.selectCompany();
 
     const sp= new SidePages(page);
     await sp.goToShift();
@@ -62,7 +61,7 @@ test.only('Add Shift scheme function',async({page})=>{
     await lp.loginPage(datas.adminCred.username,datas.adminCred.password);
 
     const ae= new AllEmployees(page);
-    await ae.selectCompany();
+    //await ae.selectCompany();
 
     const sp= new SidePages(page);
     await sp.goToShift();
