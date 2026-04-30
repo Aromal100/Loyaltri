@@ -12,6 +12,9 @@ export class SidePages {
         this.employeeAttendance = page.locator("//a[@href='/employee_attendance']").first();
         this.workPolicy=page.locator("[href='/policies']");
         this.employeeRequest=page.locator("[href='/employeeRequest']");
+        this.payroll=page.locator("//p[text()='Payroll']/parent::div");
+        this.payrollTable=page.locator("[href='/payrollTable']");
+
 
         
 
@@ -59,6 +62,12 @@ export class SidePages {
         await this.time.click();
         await this.employeeRequest.click();
 
+    }
+
+    async goToPayrollTable()
+    {
+      await this.payroll.click();
+      await this.payrollTable.click();
     }
 
 

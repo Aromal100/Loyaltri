@@ -34,7 +34,7 @@ test.only('Verify the OT adding to the employee',async({page})=>{
 
     const ea= new EmployeeAttendance(page);
     await ea.addOtFunction();
-    await expect(ea.OTCreatedMessage).toHaveText("Attendance status has been updated to Overtime");
+    await expect(ea.OTCreatedMessage).toHaveText("Attendance status has been updated to Overtime.");
 
 
 
