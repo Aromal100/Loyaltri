@@ -11,8 +11,13 @@ test('Verifying the Monthly Salary Overview',async({page})=>{
     await lp.landingPage();
     await lp.loginPage(datas.adminCred.username,datas.adminCred.password);
 
+    const ae= new AllEmployees(page);
+    await ae.selectCompany();
+
     const sp= new SidePages(page);
     await sp.goToPayrollTable();
+
+
 
     const pt= new PayrollTable(page);
     await pt.checkMonthlySalaryOverview();
@@ -26,6 +31,9 @@ test('Verifying the Start process Payroll Transactions function',async({page})=>
     const lp= new LoginPage(page);
     await lp.landingPage();
     await lp.loginPage(datas.adminCred.username,datas.adminCred.password);
+
+    const ae= new AllEmployees(page);
+    await ae.selectCompany();
 
     const sp= new SidePages(page);
     await sp.goToPayrollTable();
@@ -43,6 +51,9 @@ test('Verifying the Resume process function',async({page})=>{
     await lp.landingPage();
     await lp.loginPage(datas.adminCred.username,datas.adminCred.password);
 
+    const ae= new AllEmployees(page);
+    await ae.selectCompany();
+
     const sp= new SidePages(page);
     await sp.goToPayrollTable();
 
@@ -53,11 +64,14 @@ test('Verifying the Resume process function',async({page})=>{
 
 })
 
-test.only('Verifying the view process function',async({page})=>{
+test('Verifying the view process function',async({page})=>{
 
     const lp= new LoginPage(page);
     await lp.landingPage();
     await lp.loginPage(datas.adminCred.username,datas.adminCred.password);
+
+    const ae= new AllEmployees(page);
+    await ae.selectCompany();
 
     const sp= new SidePages(page);
     await sp.goToPayrollTable();
@@ -67,6 +81,26 @@ test.only('Verifying the view process function',async({page})=>{
    
 
 })
+
+test.only('Checking the view report function',async({page})=>{
+
+    const lp= new LoginPage(page);
+    await lp.landingPage();
+    await lp.loginPage(datas.adminCred.username,datas.adminCred.password);
+
+    const ae= new AllEmployees(page);
+    await ae.selectCompany();
+
+    const sp= new SidePages(page);
+    await sp.goToPayrollTable();
+
+    const pt= new PayrollTable(page);
+    await pt.viewReport();
+   
+
+})
+
+
 
 
 

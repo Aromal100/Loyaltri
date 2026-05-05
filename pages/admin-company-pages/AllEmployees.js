@@ -56,11 +56,11 @@ export class AllEmployees
 
     async selectCompany()
     {
-         await this.gohome.click({ timeout: 3000 }).catch(() => {});
-          await this.feedbackCancel.click().catch(() => {});
+        // await this.gohome.click({ timeout: 3000 }).catch(() => {});
+        //  await this.feedbackCancel.click().catch(() => {});
         //   await this.company.click();
         //   await this.qaCompany.click();
-        //  await this.feedbackCancel.click();
+          await this.feedbackCancel.click();
         
     }
 

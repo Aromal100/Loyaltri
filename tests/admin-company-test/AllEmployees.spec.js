@@ -21,7 +21,7 @@ test('Test employee registration process',async({page})=>{
     await lp.landingPage();
     await lp.loginPage(datas.username,datas.password);
     const ae= new AllEmployees(page);
-    //await ae.selectCompany();
+    await ae.selectCompany();
     const sp= new SidePages(page);
     await sp.goToAllEmployees();
     await ae.employeeOnBoarding(employeeData);
