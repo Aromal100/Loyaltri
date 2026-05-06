@@ -8,13 +8,16 @@ export class AllEmployees
         this.company=page.locator("//button[contains(@class,'ant-dropdown-trigger')]");
         this.qaCompany=page.locator("//p[text()='Qa Company Pvt Ltd']/parent::div").first();
         this.addEmp=page.locator("//span[text()='Add Employee']/parent::button");
-        this.firstname=page.getByPlaceholder("Enter First Name");
+        this.firstname=page.getByPlaceholder("Enter First Name").first();
         this.lastname=page.getByPlaceholder("Enter Last Name");
         this.email=page.getByPlaceholder("Enter Email");
         this.phoneNo=page.getByPlaceholder("Enter Mobile Number");
         this.calender=page.getByPlaceholder("Date of Birth");
-        this.date=page.locator("//div[text()='14']");
+        this.date=page.locator("//div[text()='5']").first();
         this.gender=page.locator("//span[text()='Female']/parent::div");
+        this.lisence=page.getByPlaceholder("Enter LICENSE");
+        this.select=page.locator("div.ant-select-selector").nth(3);
+        this.opt=page.locator("[title='NaN']").first();
         this.continue=page.locator("//span[text()='Save & Continue']/parent::button");
         this.address=page.getByPlaceholder("Enter Address").first();
         this.countrydrop=page.locator("//div[@class='relative flex items-center h-full']").first();
@@ -22,7 +25,7 @@ export class AllEmployees
         this.statedrop=page.locator("//div[@class='relative flex items-center h-full']").nth(1);
         this.kerala=page.locator("//div[@title='Kerala']");
         this.citydrop=page.locator("//div[@class='relative flex items-center h-full']").nth(2);
-        this.city=page.locator("//div[@title='Alappuzha']");
+        this.city=page.locator("//div[@title='Ernakulam']");
         this.code=page.getByPlaceholder("Enter Postal/ZIP Code").first();
         this.address2=page.getByPlaceholder("Enter Address").last();
         this.countrydrop2=page.locator("//div[@class='relative flex items-center h-full']").nth(3);
@@ -30,7 +33,7 @@ export class AllEmployees
         this.statedrop2=page.locator("//div[@class='relative flex items-center h-full']").nth(4);
         this.kerala2=page.locator("//div[@title='Kerala']").nth(1);;
         this.citydrop2=page.locator("//div[@class='relative flex items-center h-full']").nth(5);
-        this.city2=page.locator("//div[@title='Alappuzha']").nth(1);
+        this.city2=page.locator("//div[@title='Ernakulam']").nth(1);
         this.code2=page.getByPlaceholder("Enter Postal/ZIP Code").nth(1);
         this.desig=page.locator("//div[@class='ant-select-selector']").nth(1);
         this.desigOpt=page.locator("//div[@title='Admin']")
@@ -40,13 +43,13 @@ export class AllEmployees
         this.categoryOpt=page.locator("//div[@title='Advertising']");
         this.reportTo=page.locator("//div[@class='ant-select-selector']").nth(5);
         //this.reportToOpt=page.locator("//div[@title='Ram  R']");
-        this.reportToOpt=page.locator("//div[@title='Sarah  Connor']");
+        this.reportToOpt=page.locator("//div[@title='Raman Chandran S']");
         this.datetojoin=page.locator("//div[contains(@class,'ant-picker ')]").first();
         this.location=page.locator("//div[@class='ant-select-selector']").nth(6);
         this.locOpt=page.locator("//div[@title='Main Branch']");
         this.shiftsch=page.locator("//div[@class='ant-select-selector']").nth(7);
         //this.shiftOpt=page.locator("//div[@title='Night']");
-        this.shiftOpt=page.locator("//div[@title='TEST']");
+        this.shiftOpt=page.locator("//div[@title='Jungle']");
         this.probationPeriod=page.getByPlaceholder("Enter Probation Period in Days");
         this.noticePeriod=page.getByPlaceholder("Enter Notice Period in Days");
         this.save=page.locator("//span[text()='Save']/parent::button")
@@ -78,6 +81,9 @@ export class AllEmployees
         await this.calender.click();
         await this.date.click();
         await this.gender.click();
+        await this.lisence.fill(data.phone);
+        await this.select.click();
+        await this.opt.click();
         await this.continue.click();
         await this.address.fill(data.address);
         await this.countrydrop.click();
