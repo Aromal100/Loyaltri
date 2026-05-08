@@ -1,7 +1,8 @@
 {
     "loginData":
   {
-    "email":"qaorg@gmail.com",
-    "password":"123abcAB"
+    "username":"qaorg@gmail.com",
+    "password":"123abcAB",
+     "thirdPartyLogin": 0
   }
 }

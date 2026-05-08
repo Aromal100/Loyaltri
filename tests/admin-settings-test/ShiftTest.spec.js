@@ -8,14 +8,14 @@ import { faker } from '@faker-js/faker';
 
 
 
-test('Add morning shift function',async({page})=>{
+test.only('Add morning shift function',async({page})=>{
 
     const lp= new LoginPage(page);
     await lp.landingPage();
     await lp.loginPage(datas.adminCred.username,datas.adminCred.password);
 
-    // const ae= new AllEmployees(page);
-    // await ae.selectCompany();
+     const ae= new AllEmployees(page);
+    await ae.selectCompany();
 
     const sp= new SidePages(page);
     await sp.goToShift();
@@ -48,20 +48,19 @@ test('Add Night shift function',async({page})=>{
 
    await expect(s.shiftCreatedMessage).toHaveText("Shift has been created.");
   
-   
-
-
 })
 
 
-test.only('Add Shift scheme function',async({page})=>{
+test('Add Shift scheme function',async({page})=>{
+
+     test.setTimeout(50000);
 
     const lp= new LoginPage(page);
     await lp.landingPage();
     await lp.loginPage(datas.adminCred.username,datas.adminCred.password);
 
     const ae= new AllEmployees(page);
-    //await ae.selectCompany();
+    await ae.selectCompany();
 
     const sp= new SidePages(page);
     await sp.goToShift();
@@ -70,11 +69,7 @@ test.only('Add Shift scheme function',async({page})=>{
     const word = faker.word.noun(); 
 
     await s.addShiftScheme(word);
-     await expect(s.shiftSchemeCreatedMessage).toHaveText("Shift Scheme has been assigned to selected employees.");
-
-  
-   
-
+    await expect(s.shiftSchemeCreatedMessage).toHaveText("Shift Scheme has been assigned to selected employees.");
 
 })
 
