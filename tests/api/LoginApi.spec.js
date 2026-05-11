@@ -1,5 +1,9 @@
 import { test } from '@playwright/test'
 import Apidata from '../../config/Apidata.json'
+import datas from '../../config/logindata.json'
+import {AllEmployees} from '../../pages/admin-company-pages/AllEmployees.js'
+import {LoginPage} from '../../pages/login/LoginPage.js'
+import {SidePages} from '../../pages/common-pages/SidePages.js'
 
 
 let authData;
@@ -19,45 +23,39 @@ test.beforeAll(async ({ request,browser }) => {
         token: apiRes.userData.token,
     };
 
-    const context = await browser.newContext();
-    const page = await context.newPage();
+    console.log(apiRes);
 
-    await page.goto("https://alpha.loyaltri.com/");
-
-    const encryptedData = await page.evaluate(() => {
-        return localStorage.getItem('encryptedData');
-    });
-
-    console.log(encryptedData);
 
 });
 
 
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ page,request }) => {
 
-    await page.addInitScript((data) => {
+    const res=await request.post('https://alpha-api.loyaltri.com/AdminLogin',
+        {
+            headers :{Authorization:`Bearer ${authData.token}`}
+        }
+    );
 
-    localStorage.setItem('token', data.token);
-
-    }, authData)
+    const data= await res.json();
+     console.log(data);
 
     await page.goto("https://alpha.loyaltri.com/");
 })
 
-test('Loyaltri dashboard', async ({ page }) => {
+test('authenticate', async ({ page }) => {
+
+    // const lp= new LoginPage(page);
+    // await lp.landingPage();
+    // await lp.loginPage(datas.adminCred.username,datas.adminCred.password);
+
+    // await page.context().storageState({
+    //     path: 'auth.json'
+    // });
 
     const ae = new AllEmployees(page);
     await ae.selectCompany();
 
-    const sp = new SidePages(page);
-    await sp.goToShift();
-    const s = new Shift(page);
-
-    const word = faker.word.noun();
-
-    await s.addNightShift(word);
-
-    await expect(s.shiftCreatedMessage).toHaveText("Shift has been created.");
-
 
 })
+
