@@ -8,7 +8,7 @@ import { faker } from '@faker-js/faker';
 
 
 
-test.only('Add morning shift function',async({page})=>{
+test('Add morning shift function',async({page})=>{
 
     const lp= new LoginPage(page);
     await lp.landingPage();
@@ -72,5 +72,32 @@ test('Add Shift scheme function',async({page})=>{
     await expect(s.shiftSchemeCreatedMessage).toHaveText("Shift Scheme has been assigned to selected employees.");
 
 })
+
+
+test.only('Add Continuous Work Leave Shift scheme function',async({page})=>{
+
+     test.setTimeout(50000);
+
+    const lp= new LoginPage(page);
+    await lp.landingPage();
+    await lp.loginPage(datas.adminCred.username,datas.adminCred.password);
+
+    const ae= new AllEmployees(page);
+    await ae.selectCompany();
+
+    const sp= new SidePages(page);
+    await sp.goToShift();
+    const s= new Shift(page);
+
+    const word = faker.word.noun(); 
+    const workDays = faker.number.int({ min: 8, max: 10 }).toString();;
+    const leaveDays = faker.number.int({ min: 1, max: 4 }).toString();;
+
+    await s.addCwlFunction(word,workDays,leaveDays);
+    await expect(s.shiftSchemeCreatedMessage).toHaveText("Shift Scheme has been assigned to selected employees.");
+
+})
+
+
 
 

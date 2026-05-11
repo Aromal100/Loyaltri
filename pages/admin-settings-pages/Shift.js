@@ -32,6 +32,10 @@ export class Shift {
         this.proceed = page.locator("//span[text()='Yes,Proceed']/parent::button");
         this.avEmployee=page.getByRole('checkbox', { name: 'Not Assigned to Any Shift Scheme' });
         this.shiftSchemeCreatedMessage=page.locator(".ant-notification-notice-description").last();
+        this.cwl=page.locator(".ant-switch-handle").last();
+        this.enterWorkdays=page.getByPlaceholder("Enter Workdays");
+        this.enterLeaveCredit=page.getByPlaceholder("Enter Leave Credit");
+
 
 
 
@@ -172,6 +176,103 @@ export class Shift {
 
 
 
+    }
+
+    async addCwlFunction(name,day1,day2)
+    {
+      await this.shiftScheme.click();
+        await this.createShiftScheBtn.click();
+        await this.entershiftSchName.fill(name);
+        await this.shiftOpt.click();
+        await this.selectShift.click();
+
+        await this.page.evaluate(() => {
+    document.body.style.zoom = "0.75";
+});
+         for (let i = 0; i < 5; i++) {
+            const target = this.dropCells.first();
+            await target.scrollIntoViewIfNeeded();
+            await this.page.waitForTimeout(200);
+            await this.drag2.dragTo(target);
+        }
+
+        // Drag Off Day to Saturday and Sunday (remaining 2 empty cells)
+        for (let i = 0; i < 2; i++) {
+            const target = this.dropCells.first();
+            await target.scrollIntoViewIfNeeded();
+            await this.page.waitForTimeout(200);
+            await this.drag1.dragTo(target);
+        }
+
+        for (let i = 0; i < 5; i++) {
+            const target = this.dropCells.first();
+            await target.scrollIntoViewIfNeeded();
+            await this.page.waitForTimeout(200);
+            await this.drag2.dragTo(target);
+        }
+
+        for (let i = 0; i < 2; i++) {
+            const target = this.dropCells.first();
+            await target.scrollIntoViewIfNeeded();
+            await this.page.waitForTimeout(200);
+            await this.drag1.dragTo(target);
+        }
+
+        for (let i = 0; i < 5; i++) {
+            const target = this.dropCells.first();
+            await target.scrollIntoViewIfNeeded();
+            await this.page.waitForTimeout(200);
+            await this.drag2.dragTo(target);
+        }
+
+          for (let i = 0; i < 2; i++) {
+            const target = this.dropCells.first();
+            await target.scrollIntoViewIfNeeded();
+            await this.page.waitForTimeout(200);
+            await this.drag1.dragTo(target);
+        }
+
+
+        for (let i = 0; i < 5; i++) {
+            const target = this.dropCells.first();
+            await target.scrollIntoViewIfNeeded();
+            await this.page.waitForTimeout(200);
+            await this.drag2.dragTo(target);
+        }
+
+          for (let i = 0; i < 2; i++) {
+            const target = this.dropCells.first();
+            await target.scrollIntoViewIfNeeded();
+            await this.page.waitForTimeout(200);
+            await this.drag1.dragTo(target);
+        }
+
+        for (let i = 0; i < 5; i++) {
+            const target = this.dropCells.first();
+            await target.scrollIntoViewIfNeeded();
+            await this.page.waitForTimeout(200);
+            await this.drag2.dragTo(target);
+        }
+
+          for (let i = 0; i < 2; i++) {
+            const target = this.dropCells.first();
+            await target.scrollIntoViewIfNeeded();
+            await this.page.waitForTimeout(200);
+            await this.drag1.dragTo(target);
+        }
+
+        await this.cwl.click();
+        await this.enterWorkdays.fill(day1);
+        await this.enterLeaveCredit.fill(day2);
+
+   
+
+        await this.saveCon.click();
+        await this.proceed.click();
+        await this.page.waitForTimeout(3000);
+        await this.avEmployee.check();
+        await this.saveCon.click();
+        await this.proceed.click();
     }
 
 
