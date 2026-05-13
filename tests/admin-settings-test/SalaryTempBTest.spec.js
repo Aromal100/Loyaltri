@@ -1,13 +1,13 @@
 import {test,expect} from '@playwright/test';
 import {LoginPage} from '../../pages/login/LoginPage.js'
 import datas from '../../config/logindata.json'
-import {WorkPolicy} from '../../pages/admin-settings-pages/WorkPolicy.js'
+import {SalaryTempBuilder} from '../../pages/admin-settings-pages/SalaryTempBuilder.js'
 import {SidePages} from '../../pages/common-pages/SidePages.js'
 import{AllEmployees} from '../../pages/admin-company-pages/AllEmployees.js'
 import { faker } from '@faker-js/faker';
 
 
-test('Checking Work policy creation',async({page})=>{
+test("Verify the Create salary Template functionality",async({page})=>{
 
     const lp= new LoginPage(page);
     await lp.landingPage();
@@ -17,13 +17,15 @@ test('Checking Work policy creation',async({page})=>{
     await ae.selectCompany();
 
     const sp= new SidePages(page);
-    await sp.goToWorkPolicy();
+    await sp.goToSalaryTemplateBuilder();
 
-    const wp= new WorkPolicy(page);
-    const word = faker.lorem.word();
-    await wp.createWorkPolicy(word);
-    await expect(wp.workPolicyCreatedMessage).toHaveText("Work Policy has been assigned to selected employees.");
-  
+    const st= new SalaryTempBuilder(page);
+    const word = faker.lorem.word(); 
+    await st.addSalaryTempBuilder(word);
+    await expect(st.salaryTempCreatedMessage).toHaveText("Salary template has been created.");
+
+
+
 
 
 

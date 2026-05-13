@@ -13,6 +13,7 @@ export class EmployeeRequest
 
     async confirmApproval(comment)
     {
+       await this.page.waitForTimeout(2000);
        await this.overtime.click();
        await this.selectall.click();
        await this.approveSelect.click();

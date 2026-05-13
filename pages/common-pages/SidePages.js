@@ -14,6 +14,7 @@ export class SidePages {
         this.employeeRequest=page.locator("[href='/employeeRequest']");
         this.payroll=page.locator("//p[text()='Payroll']/parent::div");
         this.payrollTable=page.locator("[href='/payrollTable']");
+        this.salaryTempBuilder=page.locator("[href='/salaryTemplateBuilder']");
 
 
         
@@ -69,6 +70,14 @@ export class SidePages {
       await this.payroll.click();
       await this.payrollTable.click();
     }
+
+    async goToSalaryTemplateBuilder()
+    {
+      await this.settings.click();
+      await this.salaryTempBuilder.click();
+    }
+
+
 
 
 }
