@@ -22,7 +22,7 @@ test("Verify the Create salary Template functionality",async({page})=>{
     const st= new SalaryTempBuilder(page);
     const word = faker.lorem.word(); 
     await st.addSalaryTempBuilder(word);
-    await expect(st.salaryTempCreatedMessage).toHaveText("Salary template has been created.");
+    await expect(st.salaryTempCreatedMessage).toHaveText("Salary Template Employee mapping has been created.");
 
 
 
