@@ -1,3 +1,6 @@
+import datas from '../../config/logindata.json'
+
+
 export class AllEmployees
 {
     constructor(page)
@@ -54,6 +57,10 @@ export class AllEmployees
         this.noticePeriod=page.getByPlaceholder("Enter Notice Period in Days");
         this.save=page.locator("//span[text()='Save']/parent::button")
         this.success=page.locator("//div[text()='Successful']").first();
+        this.search=page.locator("[placeholder='Search']");
+        this.emp=page.locator(`//p[text()='${datas.userCred.empname1}']/ancestor::tr`);
+        this.attendance=page.locator("//span[text()='Attendance']/parent::button");
+        this.approvedOtCount = page.locator("//span[contains(text(),'Approved:')]/following-sibling::span");
     }
 
 
@@ -129,6 +136,16 @@ export class AllEmployees
 
 
     }
+
+    async checkOTdetails(name)
+    {
+       await this.search.fill(datas.userCred.empname2);
+       await this.emp.click();
+       await this.attendance.click();
+    }
+
+
+
 
 
 

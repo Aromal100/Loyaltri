@@ -31,3 +31,26 @@ test('Test employee registration process',async({page})=>{
     
 
 })
+
+
+test.only('Verify approved OT hours count of the employee',async({page})=>{
+
+    const lp= new LoginPage(page);
+    await lp.landingPage();
+    await lp.loginPage(datas.adminCred.username,datas.adminCred.password);
+
+    const ae= new AllEmployees(page);
+    await ae.selectCompany();
+
+    const sp= new SidePages(page);
+    await sp.goToAllEmployees();
+
+    await ae.checkOTdetails();
+    const otHours= await ae.approvedOtCount.textContent();
+    console.log(otHours);
+
+
+
+
+
+})

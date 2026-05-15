@@ -32,6 +32,10 @@ export class PayrollTable {
         this.completeNow = page.locator("//span[text()='Complete Now']/parent::button");
         this.employeePayoutApprovalMessage = page.locator(".ant-notification-notice-description").last();
         this.viewReportBtn=page.locator("//span[text()='View Report']/parent::button");
+        this.search=page.locator("[placeholder='Search']");
+        this.emp=page.locator(`//p[text()='${datas.userCred.empname}']/ancestor::tr`);
+        this.actualOtAmount = page.locator("td.text-right span").last();
+        this.close=page.locator("[aria-label='Close']");
 
     }
 
@@ -77,6 +81,16 @@ export class PayrollTable {
     {
      await this.viewReportBtn.click();
      await this.page.waitForTimeout(5000);
+    }
+
+
+    async checkOtAmount(name)
+    {
+       await this.search.fill(datas.userCred.empname2);
+       await this.emp.click();
+       await this.actualOtAmount.waitFor();
+       await this.close.click();
+
     }
 
 

@@ -82,7 +82,7 @@ test('Verifying the view process function',async({page})=>{
 
 })
 
-test.only('Checking the view report function',async({page})=>{
+test('Checking the view report function',async({page})=>{
 
     const lp= new LoginPage(page);
     await lp.landingPage();
@@ -97,6 +97,53 @@ test.only('Checking the view report function',async({page})=>{
     const pt= new PayrollTable(page);
     await pt.viewReport();
    
+
+})
+
+
+test.only('Verifying Ot amount of the employee',async({page})=>{
+
+    const lp= new LoginPage(page);
+    await lp.landingPage();
+    await lp.loginPage(datas.adminCred.username,datas.adminCred.password);
+
+    const ae= new AllEmployees(page);
+    await ae.selectCompany();
+
+    const sp= new SidePages(page);
+    await sp.goToPayrollTable();
+
+    const pt= new PayrollTable(page);
+    await pt.checkOtAmount();
+
+    const actualAmount=await pt.actualOtAmount.textContent();
+
+    const amountText = actualAmount
+    .replace(/[₹,\s]/g, '') 
+    .replace('.00', '');
+    const amount=parseInt(amountText);
+    console.log(amount);
+
+    await sp.goToAllEmployees();
+
+    await ae.checkOTdetails();
+    const otHours= await ae.approvedOtCount.textContent();
+
+    const otHourText = otHours.replace('h 00m', '').trim();
+    const otHour=parseInt(otHourText);
+    console.log(otHour);
+
+    const time=Number(datas.userCred.time)
+    const oTamount = Number(datas.userCred.amount);
+
+    //calculation 
+    const expectedAmount =otHour*time*60*oTamount
+    console.log(expectedAmount);
+
+    expect(amount).toBe(expectedAmount);
+
+
+
 
 })
 

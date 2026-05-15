@@ -1,4 +1,5 @@
 import datas from '../../config/logindata.json';
+import {expect} from '@playwright/test';
 
 export class EmployeeAttendance {
     constructor(page) {
@@ -53,12 +54,11 @@ export class EmployeeAttendance {
     async addOtFunction(name)
     {
         await this.monthlyView.click();
-        // await this.empName2.click();
-       // await this.empName.click();
-        await this.page.waitForTimeout(3000);
-        await this.searchBar.fill(name);
-        await this.empName2.click();
-        await this.empName2.click();
+        await this.page.waitForLoadState('networkidle');
+        await this.searchBar.fill(datas.userCred.empname2);
+        await this.empName.click();
+        await this.empName.click();
+        await this.preDate.waitFor();
         await this.preDate.click();
         await this.present.click();
         await this.timeopt.click();

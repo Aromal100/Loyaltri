@@ -36,7 +36,7 @@ test.only('Verify the OT adding to the employee',async({page})=>{
     await sp.goToEmployeeAttendance();
 
     const ea= new EmployeeAttendance(page);
-    await ea.addOtFunction(datas.userCred.empname);
+    await ea.addOtFunction();
     await expect(ea.OTCreatedMessage).toHaveText("Attendance status has been updated to Present");
 
 

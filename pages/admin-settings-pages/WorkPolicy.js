@@ -1,3 +1,5 @@
+import datas from '../../config/logindata.json'
+
 export class WorkPolicy
 {
     constructor(page)
@@ -9,7 +11,7 @@ export class WorkPolicy
         this.overtimeTypesOpt=page.locator(".ant-select-selector").first();
         this.afterShift=page.locator("[label='After Shift Ends']");
         this.choose=page.getByPlaceholder("Choose Employee works more than");
-        this.time=page.locator("[data-value='1']").first();
+        this.time=page.locator(`[data-value='${datas.userCred.time}']`).first();
         this.ok = page.locator("//span[text()='OK']/parent::button");
         this.amount=page.getByPlaceholder("Enter Amount Per Minute");
         this.saveCon = page.locator("//div[text()='Save & Continue']/ancestor::button");
@@ -32,7 +34,7 @@ export class WorkPolicy
         await this.choose.click();
         await this.time.click();
         await this.ok.click();
-        await this.amount.fill("100");
+        await this.amount.fill(datas.userCred.amount);
         await this.saveCon.click();
         await this.proceed.click();
         await this.page.waitForTimeout(2000);
