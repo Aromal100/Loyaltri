@@ -28,3 +28,26 @@ test('Checking Work policy creation',async({page})=>{
 
 
 })
+
+test.only('Checking Time In-Out Policy creation',async({page})=>{
+
+    const lp= new LoginPage(page);
+    await lp.landingPage();
+    await lp.loginPage(datas.adminCred.username,datas.adminCred.password);
+
+    const ae= new AllEmployees(page);
+    await ae.selectCompany();
+
+    const sp= new SidePages(page);
+    await sp.goToWorkPolicy();
+
+    const wp= new WorkPolicy(page);
+    const word = faker.lorem.word();
+    await wp.creteTimeInOutPolicy(word);
+    await page.pause();
+   
+  
+
+
+
+})
