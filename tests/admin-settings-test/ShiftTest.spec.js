@@ -51,7 +51,7 @@ test('Add Night shift function',async({page})=>{
 })
 
 
-test('Add Shift scheme function',async({page})=>{
+test.only('Add Shift scheme function',async({page})=>{
 
      test.setTimeout(50000);
 
@@ -74,7 +74,7 @@ test('Add Shift scheme function',async({page})=>{
 })
 
 
-test.only('Add Continuous Work Leave Shift scheme function',async({page})=>{
+test('Add Continuous Work Leave Shift scheme function',async({page})=>{
 
      test.setTimeout(50000);
 

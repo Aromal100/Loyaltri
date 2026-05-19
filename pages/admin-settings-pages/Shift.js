@@ -1,3 +1,5 @@
+import datas from '../../config/logindata.json'
+
 export class Shift {
     constructor(page) {
         this.page = page;
@@ -30,7 +32,10 @@ export class Shift {
         this.dropCells = page.getByText("Drop here");
         this.saveCon = page.locator("//div[text()='Save & Continue']/ancestor::button");
         this.proceed = page.locator("//span[text()='Yes,Proceed']/parent::button");
-        this.avEmployee=page.getByRole('checkbox', { name: 'Not Assigned to Any Shift Scheme' });
+        this.dateOpt=page.locator(".ant-picker-input").first();
+        this.date=page.locator("[title='2026-05-01']");
+        this.searchEmp=page.getByPlaceholder("Search Employees").nth(0);
+        this.avEmployee=page.locator("input.ant-checkbox-input").nth(1);
         this.shiftSchemeCreatedMessage=page.locator(".ant-notification-notice-description").last();
         this.cwl=page.locator(".ant-switch-handle").last();
         this.enterWorkdays=page.getByPlaceholder("Enter Workdays");
@@ -167,7 +172,11 @@ export class Shift {
 
         await this.saveCon.click();
         await this.proceed.click();
-        await this.avEmployee.check();
+        await this.dateOpt.click();
+        await this.date.click();
+        await this.page.waitForTimeout(200);
+        await this.searchEmp.type(datas.userCred.empname,{delay:1000});
+        await this.avEmployee.click();
         await this.saveCon.click();
         await this.proceed.click();
 
@@ -270,11 +279,14 @@ export class Shift {
         await this.saveCon.click();
         await this.proceed.click();
         await this.page.waitForTimeout(3000);
-        await this.avEmployee.check();
+        await this.dateOpt.click();
+        await this.date.click();
+        await this.page.waitForTimeout(200);
+        await this.searchEmp.type(datas.userCred.empname,{delay:1000});
+        await this.avEmployee.click();
         await this.saveCon.click();
         await this.proceed.click();
     }
-
 
 
 

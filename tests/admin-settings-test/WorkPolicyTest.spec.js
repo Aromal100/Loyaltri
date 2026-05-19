@@ -6,8 +6,9 @@ import {SidePages} from '../../pages/common-pages/SidePages.js'
 import{AllEmployees} from '../../pages/admin-company-pages/AllEmployees.js'
 import { faker } from '@faker-js/faker';
 
+test.describe.serial('Work Policy Tests', () => {
 
-test('Checking Work policy creation',async({page})=>{
+    test('Checking Work policy creation',async({page})=>{
 
     const lp= new LoginPage(page);
     await lp.landingPage();
@@ -24,12 +25,9 @@ test('Checking Work policy creation',async({page})=>{
     await wp.createWorkPolicy(word);
     await expect(wp.workPolicyCreatedMessage).toHaveText("Work Policy has been assigned to selected employees.");
   
-
-
-
 })
 
-test.only('Checking Time In-Out Policy creation',async({page})=>{
+test('Checking Time In-Out Policy creation',async({page})=>{
 
     const lp= new LoginPage(page);
     await lp.landingPage();
@@ -44,10 +42,9 @@ test.only('Checking Time In-Out Policy creation',async({page})=>{
     const wp= new WorkPolicy(page);
     const word = faker.lorem.word();
     await wp.creteTimeInOutPolicy(word);
-    await page.pause();
-   
-  
-
-
+    await expect(wp.workPolicyCreatedMessage).toHaveText("Work Policy has been assigned to selected employees.");
 
 })
+})
+
+

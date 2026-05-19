@@ -73,12 +73,19 @@ export class WorkPolicy
         await this.amount.fill(datas.userCred.amount);
         await this.saveCon.click();
         await this.proceed.click();
-        await this.page.waitForTimeout(2000);
+       
+        // await this.dateOpt.click();
+        // await this.date.click();
+        // await this.avEmployee.click();
+        // await this.saveCon.click();
+        // await this.proceed.click();
         await this.dateOpt.click();
-        await this.date.click();
-        await this.avEmployee.click();
-        await this.saveCon.click();
-        await this.proceed.click();
+       await this.date.click();
+       await this.searchEmp.waitFor();
+       await this.searchEmp.fill(datas.userCred.empname2);
+       await this.selectEmp.click();
+       await this.saveCon.click();
+       await this.proceed.click();
     }
 
     async creteTimeInOutPolicy(name)
@@ -121,8 +128,10 @@ export class WorkPolicy
        await this.dateOpt.click();
        await this.date.click();
        await this.searchEmp.waitFor();
-       await this.searchEmp.fill(datas.userCred.empname2);
+       await this.searchEmp.fill(datas.userCred.empname);
        await this.selectEmp.click();
+       await this.saveCon.click();
+       await this.proceed.click();
 
 
 

@@ -20,7 +20,7 @@ export class AllEmployees
         this.gender=page.locator("//span[text()='Female']/parent::div");
         this.lisence=page.getByPlaceholder("Enter LICENSE");
         this.select=page.locator("div.ant-select-selector").nth(3);
-        this.opt=page.locator("[title='NaN']").first();
+        this.opt=page.locator("[title='Low']").first(); 
         this.continue=page.locator("//span[text()='Save & Continue']/parent::button");
         this.address=page.getByPlaceholder("Enter Address").first();
         this.countrydrop=page.locator("//div[@class='relative flex items-center h-full']").first();
@@ -30,14 +30,7 @@ export class AllEmployees
         this.citydrop=page.locator("//div[@class='relative flex items-center h-full']").nth(2);
         this.city=page.locator("//div[@title='Ernakulam']");
         this.code=page.getByPlaceholder("Enter Postal/ZIP Code").first();
-        this.address2=page.getByPlaceholder("Enter Address").last();
-        this.countrydrop2=page.locator("//div[@class='relative flex items-center h-full']").nth(3);
-        this.country2=page.locator("//div[@title='India']").nth(1);
-        this.statedrop2=page.locator("//div[@class='relative flex items-center h-full']").nth(4);
-        this.kerala2=page.locator("//div[@title='Kerala']").nth(1);;
-        this.citydrop2=page.locator("//div[@class='relative flex items-center h-full']").nth(5);
-        this.city2=page.locator("//div[@title='Ernakulam']").nth(1);
-        this.code2=page.getByPlaceholder("Enter Postal/ZIP Code").nth(1);
+        this.sameAddress=page.getByRole('checkbox',{name:'Set same as communication address'});
         this.desig=page.locator("//div[@class='ant-select-selector']").nth(1);
         this.desigOpt=page.locator("//div[@title='Admin']")
         this.dept=page.locator("//div[@class='ant-select-selector']").nth(2);
@@ -82,15 +75,12 @@ export class AllEmployees
     async employeeOnBoarding(data)
     {
         await this.firstname.fill(data.name);
-        await this.lastname.fill(data.lastname);
+        await this.lastname.fill(data.name);
         await this.email.fill(data.email);
         await this.phoneNo.fill(data.phone);
         await this.calender.click();
         await this.date.click();
         await this.gender.click();
-        await this.lisence.fill(data.phone);
-        await this.select.click();
-        await this.opt.click();
         await this.continue.click();
         await this.address.fill(data.address);
         await this.countrydrop.click();
@@ -100,14 +90,7 @@ export class AllEmployees
         await this.citydrop.click();
         await this.city.click();
         await this.code.fill(data.postalCode);
-        await this.address2.fill(data.address);
-        await this.countrydrop2.click();
-        await this.country2.click();
-        await this.statedrop2.click();
-        await this.kerala2.click();
-        await this.citydrop2.click();
-        await this.city2.click();
-        await this.code2.fill(data.postalCode);
+        await this.sameAddress.click();
         await this.continue.click();
 
     }

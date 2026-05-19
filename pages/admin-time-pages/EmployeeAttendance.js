@@ -5,7 +5,7 @@ export class EmployeeAttendance {
     constructor(page) {
         this.page = page;
         this.monthlyView = page.locator("//span[text()='Monthly View']/parent::button");
-        this.empName = page.locator(`//span[text()='${datas.userCred.empname}']/ancestor::button`);
+        this.empName = page.locator(`//span[contains(text(),'${datas.userCred.empname}')]/ancestor::button`);
         this.empName2 = page.locator(`//span[text()='${datas.userCred.empname2}']/ancestor::button`);
         this.preDate=page.locator(`div:has(p.font-medium:text-is("${datas.userCred.date}")) > p.ant-dropdown-trigger`);
         this.activePdate = page.locator("div.bg-primary:has(p.font-medium) ~ p.ant-dropdown-trigger");
@@ -27,7 +27,8 @@ export class EmployeeAttendance {
         this.enterAmount=page.getByPlaceholder("Enter Amount Per Hour");
         this.submit=page.locator("//span[text()='Submit']/parent::button");
         this.OTCreatedMessage=page.locator(".ant-notification-notice-description").last();
-        this.searchBar=page.getByPlaceholder("Search Employees and Emp Code")
+        this.searchBar=page.getByPlaceholder("Search Employees and Emp Code");
+        this.time2=page.locator("[data-value='10']").last();
 
 
 
@@ -39,9 +40,11 @@ export class EmployeeAttendance {
 
     async viewAttendanceTimeline() {
         await this.monthlyView.click();
-        await this.empName.click();
+        await this.page.waitForLoadState('networkidle');
+        await this.searchBar.fill(datas.userCred.empname2);
+        //await this.empName.click();
         await this.page.waitForTimeout(3000);
-        await this.empName.click();
+        //await this.empName.click();
         await this.activePdate.click();
         await this.page.evaluate(() => {
             document.body.style.zoom = "0.75";
@@ -55,10 +58,11 @@ export class EmployeeAttendance {
     {
         await this.monthlyView.click();
         await this.page.waitForLoadState('networkidle');
-        await this.searchBar.fill(datas.userCred.empname2);
-        await this.empName.click();
-        await this.empName.click();
+        await this.searchBar.fill(datas.userCred.empname);
+        // await this.empName.click();
+        // await this.empName.click();
         await this.preDate.waitFor();
+        await this.preDate.click();
         await this.preDate.click();
         await this.present.click();
         await this.timeopt.click();
@@ -81,6 +85,33 @@ export class EmployeeAttendance {
         // await this.submit.click();
 
     }
+
+     async addTimeOutFunction(name)
+    {
+        await this.monthlyView.click();
+        await this.page.waitForLoadState('networkidle');
+        await this.searchBar.fill(datas.userCred.empname);
+        // await this.empName.click();
+        // await this.empName.click();
+        await this.preDate.waitFor();
+        await this.preDate.click();
+        await this.preDate.click();
+        await this.present.click();
+        await this.timeopt.click();
+        await this.time.click();
+        await this.time2.click();
+        await this.ok.click();
+        await this.addtime.click();
+        await this.timeopt2.click();
+        await this.timee.click();
+        await this.ok2.click();
+        await this.submit.click();
+        
+       
+
+    }
+
+
 
 
 
