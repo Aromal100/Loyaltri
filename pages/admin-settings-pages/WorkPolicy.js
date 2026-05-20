@@ -20,7 +20,7 @@ export class WorkPolicy
         this.saveCon = page.locator("//div[text()='Save & Continue']/ancestor::button");
         this.proceed = page.locator("//span[text()='Yes,Proceed']/parent::button");
         this.dateOpt=page.locator(".ant-picker-input").last();
-        this.date=page.locator("[title='2026-05-01']");
+        this.date=page.locator(`[title='${datas.userCred.joinDate}']`);
         //this.avEmployee=page.getByRole('checkbox', { name: 'Not Assigned to Any Work Policy' });
         this.avEmployee=page.locator(".ant-checkbox-input").nth(2);
         this.workPolicyCreatedMessage=page.locator(".ant-notification-notice-description").last();
@@ -52,7 +52,7 @@ export class WorkPolicy
         this.days3=page.locator("[title='Calender Days']").last();
 
         this.dateOpt=page.getByPlaceholder("Select Effective Date");
-        this.date=page.locator("[title='2026-05-01']");
+        this.date=page.locator(`[title='${datas.userCred.joinDate}']`);
         this.searchEmp=page.getByPlaceholder("Search Employees").first();
         this.selectEmp=page.locator("[type='checkbox']").nth(1);
 
@@ -128,7 +128,7 @@ export class WorkPolicy
        await this.dateOpt.click();
        await this.date.click();
        await this.searchEmp.waitFor();
-       await this.searchEmp.fill(datas.userCred.empname);
+       await this.searchEmp.type(datas.userCred.empname,{delay:1000});
        await this.selectEmp.click();
        await this.saveCon.click();
        await this.proceed.click();

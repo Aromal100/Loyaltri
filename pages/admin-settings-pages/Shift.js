@@ -33,7 +33,7 @@ export class Shift {
         this.saveCon = page.locator("//div[text()='Save & Continue']/ancestor::button");
         this.proceed = page.locator("//span[text()='Yes,Proceed']/parent::button");
         this.dateOpt=page.locator(".ant-picker-input").first();
-        this.date=page.locator("[title='2026-05-01']");
+        this.date=page.locator(`[title='${datas.userCred.joinDate}']`);
         this.searchEmp=page.getByPlaceholder("Search Employees").nth(0);
         this.avEmployee=page.locator("input.ant-checkbox-input").nth(1);
         this.shiftSchemeCreatedMessage=page.locator(".ant-notification-notice-description").last();

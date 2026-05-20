@@ -109,8 +109,8 @@ export class AllEmployees
        await this.date.click();
        await this.location.click();
        await this.locOpt.click();
-       await this.shiftsch.click();
-       await this.shiftOpt.click();
+    //    await this.shiftsch.click();
+    //    await this.shiftOpt.click();
        await this.continue.click();
        await this.probationPeriod.fill("90");
        await this.noticePeriod.fill("90");

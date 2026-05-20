@@ -27,7 +27,7 @@ test.describe.serial('Work Policy Tests', () => {
   
 })
 
-test('Checking Time In-Out Policy creation',async({page})=>{
+test.only('Checking Time In-Out Policy creation',async({page})=>{
 
     const lp= new LoginPage(page);
     await lp.landingPage();
