@@ -82,7 +82,7 @@ export class WorkPolicy
         await this.dateOpt.click();
        await this.date.click();
        await this.searchEmp.waitFor();
-       await this.searchEmp.fill(datas.userCred.empname2);
+       await this.searchEmp.type(datas.userCred.empname,{delay:1000});
        await this.selectEmp.click();
        await this.saveCon.click();
        await this.proceed.click();

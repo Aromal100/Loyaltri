@@ -1,12 +1,13 @@
 import {test,expect} from '@playwright/test';
 import {LoginPage} from '../../pages/login/LoginPage.js'
 import datas from '../../config/logindata.json'
-import {Leave} from '../../pages/admin-settings-pages/Leave.js'
+import {Recalculate} from '../../pages/admin-settings-pages/Recalculate.js'
 import {SidePages} from '../../pages/common-pages/SidePages.js'
 import{AllEmployees} from '../../pages/admin-company-pages/AllEmployees.js'
 import { faker } from '@faker-js/faker';
 
-test('Add leave type function',async({page})=>{
+
+test('Verifying the Recalculate function',async({page})=>{
 
     const lp= new LoginPage(page);
     await lp.landingPage();
@@ -16,16 +17,16 @@ test('Add leave type function',async({page})=>{
     await ae.selectCompany();
 
     const sp= new SidePages(page);
-    await sp.goToLeavePage();
-    const l= new Leave(page);
+    await sp.goToRecalculate();
 
-    const word = faker.lorem.word(); 
+    const re=new Recalculate(page);
+    await re.addRecalculate();
+    await expect(re.recalculatedMessage).toHaveText("Recalculation Queued Successfully.");
+    
+    
 
-    await l.addLeaveType(word,"30","3");
-  
-   
+
+
 
 
 })
-
-

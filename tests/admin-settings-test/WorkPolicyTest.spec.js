@@ -8,7 +8,7 @@ import { faker } from '@faker-js/faker';
 
 test.describe.serial('Work Policy Tests', () => {
 
-    test('Checking Work policy creation',async({page})=>{
+    test.only('Checking Work policy creation',async({page})=>{
 
     const lp= new LoginPage(page);
     await lp.landingPage();
@@ -27,7 +27,7 @@ test.describe.serial('Work Policy Tests', () => {
   
 })
 
-test.only('Checking Time In-Out Policy creation',async({page})=>{
+test('Checking Time In-Out Policy creation',async({page})=>{
 
     const lp= new LoginPage(page);
     await lp.landingPage();

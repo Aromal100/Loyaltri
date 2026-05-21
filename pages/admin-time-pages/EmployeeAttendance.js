@@ -13,10 +13,11 @@ export class EmployeeAttendance {
         this.viewLog = page.locator("//span[text()='View Log']");
         this.present = page.getByRole('menuitem', { name: 'Present' });
         this.timeopt=page.getByPlaceholder("Choose Time").first();
-        this.time = page.locator("[data-value='9']").first();
+        this.time = page.locator("[data-value='11']").first();
         this.addtime=page.locator("//p[text()='Add Time']/parent::div");
         this.timeopt2=page.getByPlaceholder("Choose Time").last();
-        this.timee = page.locator("[data-value='18']").nth(2);
+        this.timee = page.locator("[data-value='16']").nth(2);
+        this.timee2 = page.locator("[data-value='50']").last(2);
         this.overTime = page.getByRole('menuitem', { name: 'Overtime' });
         this.overTimeOpt=page.getByPlaceholder("Number of hours");
         this.timeIn = page.locator("[data-value='1']").first();
@@ -104,6 +105,7 @@ export class EmployeeAttendance {
         await this.addtime.click();
         await this.timeopt2.click();
         await this.timee.click();
+        await this.timee2.click();
         await this.ok2.click();
         await this.submit.click();
         

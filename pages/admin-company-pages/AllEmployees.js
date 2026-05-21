@@ -54,6 +54,7 @@ export class AllEmployees
         this.emp=page.locator(`//p[text()='${datas.userCred.empname1}']/ancestor::tr`);
         this.attendance=page.locator("//span[text()='Attendance']/parent::button");
         this.approvedOtCount = page.locator("//span[contains(text(),'Approved:')]/following-sibling::span");
+        this.search=page.getByPlaceholder("Search");
     }
 
 
@@ -126,6 +127,8 @@ export class AllEmployees
        await this.emp.click();
        await this.attendance.click();
     }
+
+    async 
 
 
 
