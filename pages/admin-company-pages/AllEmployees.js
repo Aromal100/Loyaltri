@@ -64,7 +64,7 @@ export class AllEmployees
         //  await this.feedbackCancel.click().catch(() => {});
         //   await this.company.click();
         //   await this.qaCompany.click();
-          await this.feedbackCancel.click();
+        //await this.feedbackCancel.click();
         
     }
 
