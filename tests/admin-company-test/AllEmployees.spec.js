@@ -14,16 +14,20 @@ test('Test employee registration process',async({page})=>{
   email: faker.internet.email(),
   phone: `9${faker.string.numeric(9)}`,
   address: faker.location.streetAddress(),
-  postalCode : faker.string.numeric(6)
+  postalCode : faker.string.numeric(6),
+  code: faker.food.fruit()
 };
 
     const lp= new LoginPage(page);
     await lp.landingPage();
     await lp.loginPage(datas.username,datas.password);
+
     const ae= new AllEmployees(page);
     await ae.selectCompany();
+
     const sp= new SidePages(page);
     await sp.goToAllEmployees();
+    
     await ae.employeeOnBoarding(employeeData);
     await ae.workDetails();
     await expect(ae.success).toHaveText("Successful");

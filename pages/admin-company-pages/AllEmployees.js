@@ -75,7 +75,7 @@ export class AllEmployees
 
     async employeeOnBoarding(data)
     {
-        await this.firstname.fill(data.name);
+        await this.firstname.fill(data.code);
         await this.lastname.fill(data.name);
         await this.email.fill(data.email);
         await this.phoneNo.fill(data.phone);
