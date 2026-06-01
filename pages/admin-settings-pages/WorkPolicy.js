@@ -19,6 +19,7 @@ export class WorkPolicy
         this.amount=page.getByPlaceholder("Enter Amount Per Minute");
         this.saveCon = page.locator("//div[text()='Save & Continue']/ancestor::button");
         this.proceed = page.locator("//span[text()='Yes,Proceed']/parent::button");
+        this.proceeed = page.locator("//span[text()='Yes, Proceed']/parent::button");
         this.dateOpt=page.locator(".ant-picker-input").last();
         this.date=page.locator(`[title='${datas.userCred.joinDate}']`);
         //this.avEmployee=page.getByRole('checkbox', { name: 'Not Assigned to Any Work Policy' });
@@ -58,6 +59,9 @@ export class WorkPolicy
         this.date=page.locator(`[title='${datas.userCred.joinDate}']`);
         this.searchEmp=page.getByPlaceholder("Search Employees").first();
         this.selectEmp=page.locator("[type='checkbox']").nth(1);
+
+        this.missPunch=page.locator("//h2[text()='Miss Punch Policy']/ancestor::button");
+        this.missPunchOccurMoreThan=page.getByPlaceholder("Enter If Miss Punch Occurs More Than");
 
 
 
@@ -139,8 +143,26 @@ export class WorkPolicy
        await this.saveCon.click();
        await this.proceed.click();
 
+    }
 
-
+    async missPunchpolicy(name)
+    {
+      await this.creteWorkPolicyBtn.click();
+      await this.missPunch.click();
+      await this.enterName.fill(name);
+      await this.missPunchOccurMoreThan.fill("1");
+      await this.deductionTyOpt1.click();
+      await this.deductionType.click();
+      await this.amount1.fill("100");
+      await this.saveCon.click();
+      await this.proceeed.click();
+      await this.dateOpt.click();
+      await this.date.click();
+      await this.searchEmp.waitFor();
+      await this.searchEmp.type(datas.userCred.empname,{delay:1000});
+      await this.selectEmp.click();
+      await this.saveCon.click();
+      await this.proceeed.click();
 
     }
 

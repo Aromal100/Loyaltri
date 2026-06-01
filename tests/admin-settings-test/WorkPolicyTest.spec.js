@@ -27,7 +27,7 @@ test.describe.serial('Work Policy Tests', () => {
   
 })
 
-test.only('Checking Time In-Out Policy creation',async({page})=>{
+test('Checking Time In-Out Policy creation',async({page})=>{
 
     const lp= new LoginPage(page);
     await lp.landingPage();
@@ -45,6 +45,28 @@ test.only('Checking Time In-Out Policy creation',async({page})=>{
     await expect(wp.workPolicyCreatedMessage).toHaveText("Work Policy has been assigned to selected employees.");
 
 })
+
+test.only('Checking Miss Punch Policy creation',async({page})=>{
+
+    const lp= new LoginPage(page);
+    await lp.landingPage();
+    await lp.loginPage(datas.adminCred.username,datas.adminCred.password);
+
+    const ae= new AllEmployees(page);
+    await ae.selectCompany();
+
+    const sp= new SidePages(page);
+    await sp.goToWorkPolicy();
+
+    const wp= new WorkPolicy(page);
+    const word = faker.lorem.word();
+    await wp.missPunchpolicy(word);
+    await expect(wp.workPolicyCreatedMessage).toHaveText("Work Policy has been assigned to selected employees.");
+
+})
+
+
+
 })
 
 

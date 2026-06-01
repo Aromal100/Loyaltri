@@ -101,7 +101,7 @@ test('Checking the view report function',async({page})=>{
 })
 
 
-test.only('Verifying Ot amount of the employee',async({page})=>{
+test('Verifying Ot amount of the employee',async({page})=>{
 
     const lp= new LoginPage(page);
     await lp.landingPage();
@@ -142,13 +142,36 @@ test.only('Verifying Ot amount of the employee',async({page})=>{
 
     expect(amount).toBe(expectedAmount);
 
+})
 
-    	
 
+test.only('Verifying Attendance Deduction amount of the employee',async({page})=>{
 
+    const lp= new LoginPage(page);
+    await lp.landingPage();
+    await lp.loginPage(datas.adminCred.username,datas.adminCred.password);
+
+    const ae= new AllEmployees(page);
+    await ae.selectCompany();
+
+    const sp= new SidePages(page);
+    await sp.goToPayrollTable();
+
+    const pt= new PayrollTable(page);
+    await pt.checkAttendanceDeduction();
+
+    const actualAmount=await pt.totalDeductionAmount.textContent();
+
+    const amountText = actualAmount
+    .replace(/[₹,\s]/g, '') 
+    .replace('.00', '');
+    const amount=parseInt(amountText);
+    console.log("The total Deduction amount is:" +amount);
 
 
 })
+
+
 
 
 

@@ -43,7 +43,7 @@ test('Verify the OT adding to the employee',async({page})=>{
 
 })
 
-test.only('Verify the late punch adding to the employee',async({page})=>{
+test('Verify the late punch adding to the employee',async({page})=>{
 
     const lp= new LoginPage(page);
     await lp.landingPage();
@@ -57,6 +57,24 @@ test.only('Verify the late punch adding to the employee',async({page})=>{
 
     const ea= new EmployeeAttendance(page);
     await ea.addTimeOutFunction();
+    await expect(ea.OTCreatedMessage).toHaveText("Attendance status has been updated to Present");
+
+})
+
+test.only('Checking the miss punch function to the employee',async({page})=>{
+
+    const lp= new LoginPage(page);
+    await lp.landingPage();
+    await lp.loginPage(datas.adminCred.username,datas.adminCred.password);
+
+    const ae= new AllEmployees(page);
+    await ae.selectCompany();
+
+    const sp= new SidePages(page);
+    await sp.goToEmployeeAttendance();
+
+    const ea= new EmployeeAttendance(page);
+    await ea.addMissPunchFunction();
     await expect(ea.OTCreatedMessage).toHaveText("Attendance status has been updated to Present");
 
 })

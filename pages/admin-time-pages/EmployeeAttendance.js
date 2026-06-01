@@ -30,11 +30,8 @@ export class EmployeeAttendance {
         this.OTCreatedMessage=page.locator(".ant-notification-notice-description").last();
         this.searchBar=page.getByPlaceholder("Search Employees and Emp Code");
         this.time2=page.locator("[data-value='10']").last();
-
-
-
-
-
+        this.monthOpt=page.locator("//button[contains(@class,'h-fit')]").last();
+        this.month=page.locator(`//div[text()='${datas.userCred.month}']`)
 
 
     }
@@ -91,7 +88,7 @@ export class EmployeeAttendance {
     {
         await this.monthlyView.click();
         await this.page.waitForLoadState('networkidle');
-        await this.searchBar.fill(datas.userCred.empname);
+        await this.searchBar.type(datas.userCred.empname);
         await this.empName.click();
         await this.empName.click();
         //await this.preDate.waitFor();
@@ -109,7 +106,24 @@ export class EmployeeAttendance {
         await this.ok2.click();
         await this.submit.click();
         
-       
+    }
+
+    async addMissPunchFunction()
+    {
+       await this.monthlyView.click();
+       await this.page.waitForLoadState('networkidle');
+       await this.monthOpt.click();
+       await this.month.click();
+       await this.searchBar.type(datas.userCred.empname,{delay:1000});
+       await this.empName.click();
+       await this.empName.click();
+       await this.preDate.click();
+       await this.present.click();
+       await this.timeopt.click();
+       await this.time.click();
+       await this.time2.click();
+       await this.ok.click();
+       await this.submit.click();
 
     }
 

@@ -36,7 +36,10 @@ export class PayrollTable {
         this.emp=page.locator(`//p[text()='${datas.userCred.empname}']/ancestor::tr`);
         this.actualOtAmount = page.locator("td.text-right span").last();
         this.close=page.locator("[aria-label='Close']");
-
+        this.totalDeductionAmount=page.locator("//div[@class=('flex flex-1 justify-between')]/p").last();
+        this.selectEmp=page.locator("//td[contains(@class,'ant-table-cell-fix-left-last')]");
+        this.i=page.locator("//i[@class=('cursor-pointer text-primary')]");
+        this.allDates=page.locator("//div[@class='flex justify-between border-b pb-2']/span");
     }
 
     async checkMonthlySalaryOverview() {
@@ -90,6 +93,21 @@ export class PayrollTable {
        await this.emp.click();
        await this.actualOtAmount.waitFor();
        await this.close.click();
+
+    }
+
+    async checkAttendanceDeduction()
+    {
+      await this.search.type(datas.userCred.empname);
+      await this.selectEmp.click();
+      await this.i.click();
+      const texts=await this.allDates.allTextContents();
+      for (const text of texts)
+      {
+       console.log(text);
+      }
+
+      
 
     }
 
