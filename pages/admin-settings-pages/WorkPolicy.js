@@ -150,7 +150,7 @@ export class WorkPolicy
       await this.creteWorkPolicyBtn.click();
       await this.missPunch.click();
       await this.enterName.fill(name);
-      await this.missPunchOccurMoreThan.fill("1");
+      await this.missPunchOccurMoreThan.fill("0");
       await this.deductionTyOpt1.click();
       await this.deductionType.click();
       await this.amount1.fill("100");

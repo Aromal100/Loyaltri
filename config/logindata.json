@@ -10,9 +10,11 @@
     "empname":"Arjun",
     "amount":"20",
     "time":"1",
-    "date":"29",
+    "date":"1",
     "joinDate": "2026-06-01",
-    "month" : "May"
+    "month" : "May",
+    "company":"Qualityat ",
+    "file":"/home/docme/Downloads/WorldCup.jpeg"
 
     
 },

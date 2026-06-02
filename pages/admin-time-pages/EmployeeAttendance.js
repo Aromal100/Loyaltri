@@ -112,9 +112,9 @@ export class EmployeeAttendance {
     {
        await this.monthlyView.click();
        await this.page.waitForLoadState('networkidle');
-       await this.monthOpt.click();
-       await this.month.click();
-       await this.searchBar.type(datas.userCred.empname,{delay:1000});
+    //    await this.monthOpt.click();
+    //    await this.month.click();
+       await this.searchBar.type(datas.userCred.empname,{delay:500});
        await this.empName.click();
        await this.empName.click();
        await this.preDate.click();
