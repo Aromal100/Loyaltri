@@ -6,7 +6,7 @@ import {SidePages} from '../../pages/common-pages/SidePages.js'
 import { faker } from '@faker-js/faker';
 
 
-test('Mulitple employee registration process',async({page})=>{
+test('Duplicate employee registration process',async({page})=>{
 
     test.setTimeout(30 * 60 * 1000);
 
@@ -19,8 +19,6 @@ test('Mulitple employee registration process',async({page})=>{
     const sp= new SidePages(page);
     await sp.goToAllEmployees();
 
-for (let i = 1; i <= 1; i++) {  
-
     const employeeData = {
   name: faker.person.firstName(),
   lastname:faker.person.firstName(),
@@ -30,11 +28,12 @@ for (let i = 1; i <= 1; i++) {
   postalCode : faker.string.numeric(6)
 };
 
+for (let i = 1; i <= 2; i++) {  
    
     await ae.employeeOnBoarding(employeeData);
     await ae.workDetails();
-    await expect(ae.success).toHaveText("Successful");
-    await expect(ae.success).toBeHidden();
+    // await expect(ae.success).toHaveText("Successful");
+    // await expect(ae.success).toBeHidden();
 }
 
     

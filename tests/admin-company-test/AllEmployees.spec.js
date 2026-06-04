@@ -20,7 +20,7 @@ test('Test employee registration process',async({page})=>{
 
     const lp= new LoginPage(page);
     await lp.landingPage();
-    await lp.loginPage(datas.username,datas.password);
+    await lp.loginPage(datas.adminCred.username,datas.adminCred.password);
 
     const ae= new AllEmployees(page);
     await ae.selectCompany();

@@ -11,12 +11,12 @@ export class AllEmployees
         this.company=page.locator("//button[contains(@class,'ant-dropdown-trigger')]");
         this.qaCompany=page.locator("//p[text()='Qa Company Pvt Ltd']/parent::div").first();
         this.addEmp=page.locator("//span[text()='Add Employee']/parent::button");
-        this.firstname=page.getByPlaceholder("Enter First Name").first();
+        this.firstname=page.getByPlaceholder("Enter First Name");
         this.lastname=page.getByPlaceholder("Enter Last Name");
         this.email=page.getByPlaceholder("Enter Email");
         this.phoneNo=page.getByPlaceholder("Enter Mobile Number");
         this.calender=page.getByPlaceholder("Date of Birth");
-        this.date=page.locator("//div[text()='5']").first();
+        this.date=page.locator("//div[text()='1']").first();
         this.gender=page.locator("//span[text()='Female']/parent::div");
         this.lisence=page.getByPlaceholder("Enter LICENSE");
         this.select=page.locator("div.ant-select-selector").nth(3);
@@ -39,7 +39,7 @@ export class AllEmployees
         this.categoryOpt=page.locator("//div[@title='Advertising']");
         this.reportTo=page.locator("//div[@class='ant-select-selector']").nth(5);
         //this.reportToOpt=page.locator("//div[@title='Ram  R']");
-        this.reportToOpt=page.locator("//div[@title='Raman Chandran S']");
+        this.reportToOpt=page.locator("//div[@title='AKHIL  AS']");
         this.datetojoin=page.locator("//div[contains(@class,'ant-picker ')]").first();
         this.location=page.locator("//div[@class='ant-select-selector']").nth(6);
         this.locOpt=page.locator("//div[@title='Main Branch']");
@@ -50,11 +50,11 @@ export class AllEmployees
         this.noticePeriod=page.getByPlaceholder("Enter Notice Period in Days");
         this.save=page.locator("//span[text()='Save']/parent::button")
         this.success=page.locator("//div[text()='Successful']").first();
-        this.search=page.locator("[placeholder='Search']");
-        this.emp=page.locator(`//p[text()='${datas.userCred.empname1}']/ancestor::tr`);
+        //this.search=page.locator("[placeholder='Search']");
+        this.emp=page.locator(`//p[text()='${datas.userCred.empname}']/ancestor::tr`);
         this.attendance=page.locator("//span[text()='Attendance']/parent::button");
         this.approvedOtCount = page.locator("//span[contains(text(),'Approved:')]/following-sibling::span");
-        this.search=page.getByPlaceholder("Search");
+        this.search=page.locator("//input[@placeholder='Search']");
     }
 
 
@@ -64,7 +64,7 @@ export class AllEmployees
         //  await this.feedbackCancel.click().catch(() => {});
         //   await this.company.click();
         //   await this.qaCompany.click();
-        await this.feedbackCancel.click();
+        //await this.feedbackCancel.click();
         
     }
 
@@ -75,8 +75,9 @@ export class AllEmployees
 
     async employeeOnBoarding(data)
     {
-        await this.firstname.fill(data.code);
-        await this.lastname.fill(data.name);
+        await this.addEmp.click();
+        await this.firstname.fill(data.name);
+        await this.lastname.fill(data.lastname);
         await this.email.fill(data.email);
         await this.phoneNo.fill(data.phone);
         await this.calender.click();
@@ -123,12 +124,13 @@ export class AllEmployees
 
     async checkOTdetails(name)
     {
-       await this.search.fill(datas.userCred.empname2);
+       await this.search.waitFor();
+       await this.search.fill(datas.userCred.empname);
        await this.emp.click();
        await this.attendance.click();
     }
 
-    async 
+     
 
 
 
