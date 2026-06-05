@@ -8,9 +8,9 @@ export class AllEmployees
         this.page=page;
         this.gohome=page.locator("//span[text()='Go Home']/parent::button"); 
         this.feedbackCancel=page.locator("//button[@class='ant-modal-close']");
-        this.company=page.locator("//button[contains(@class,'ant-dropdown-trigger')]");
-        this.qaCompany=page.locator("//p[text()='Qa Company Pvt Ltd']/parent::div").first();
-        this.addEmp=page.locator("//span[text()='Add Employee']/parent::button");
+        this.company=page.locator("//button[contains(@class,'ant-dropdown-trigger')]").first();
+        this.qaCompany=page.locator(`//p[normalize-space()='${datas.userCred.company}']/parent::div`).first();
+        this.addEmp=page.locator("//span[normalize-space()='Add Employee']/parent::button");
         this.firstname=page.getByPlaceholder("Enter First Name");
         this.lastname=page.getByPlaceholder("Enter Last Name");
         this.email=page.getByPlaceholder("Enter Email");
@@ -41,13 +41,16 @@ export class AllEmployees
         //this.reportToOpt=page.locator("//div[@title='Ram  R']");
         this.reportToOpt=page.locator("//div[@title='AKHIL  AS']");
         this.datetojoin=page.locator("//div[contains(@class,'ant-picker ')]").first();
-        this.location=page.locator("//div[@class='ant-select-selector']").nth(6);
+        this.location=page.locator("//div[@class='ant-select-selector']").nth(7);
         this.locOpt=page.locator("//div[@title='Main Branch']");
         this.shiftsch=page.locator("//div[@class='ant-select-selector']").nth(7);
         //this.shiftOpt=page.locator("//div[@title='Night']");
         this.shiftOpt=page.locator("//div[@title='Jungle']");
         this.probationPeriod=page.getByPlaceholder("Enter Probation Period in Days");
         this.noticePeriod=page.getByPlaceholder("Enter Notice Period in Days");
+        this.approvalType=page.locator("//span[text()='Choose Approval Type']/parent::div");
+        this.leaveApproval=page.locator("[title='Leave Request Approval']");
+        this.leaveRequestName=page.locator(`//li[normalize-space()='${datas.userCred.leaveType}']`)
         this.save=page.locator("//span[text()='Save']/parent::button")
         this.success=page.locator("//div[text()='Successful']").first();
         //this.search=page.locator("[placeholder='Search']");
@@ -55,6 +58,7 @@ export class AllEmployees
         this.attendance=page.locator("//span[text()='Attendance']/parent::button");
         this.approvedOtCount = page.locator("//span[contains(text(),'Approved:')]/following-sibling::span");
         this.search=page.locator("//input[@placeholder='Search']");
+
     }
 
 
@@ -62,9 +66,9 @@ export class AllEmployees
     {
         // await this.gohome.click({ timeout: 3000 }).catch(() => {});
         //  await this.feedbackCancel.click().catch(() => {});
-        //   await this.company.click();
-        //   await this.qaCompany.click();
-        //await this.feedbackCancel.click();
+          await this.company.click();
+          await this.qaCompany.click();
+        await this.feedbackCancel.click();
         
     }
 
@@ -75,6 +79,8 @@ export class AllEmployees
 
     async employeeOnBoarding(data)
     {
+        await this.page.waitForLoadState('networkidle');
+        await this.page.waitForTimeout(1000);
         await this.addEmp.click();
         await this.firstname.fill(data.name);
         await this.lastname.fill(data.lastname);
@@ -99,14 +105,15 @@ export class AllEmployees
 
     async workDetails()
     {
+        await this.desig.waitFor();
        await this.desig.click();
        await this.desigOpt.click();
        await this.dept.click();
        await this.deptOpt.click();
        await this.category.click();
        await this.categoryOpt.click();
-       await this.reportTo.click();
-       await this.reportToOpt.click();
+    //    await this.reportTo.click();
+    //    await this.reportToOpt.click();
        await this.datetojoin.click();
        await this.date.click();
        await this.location.click();
@@ -116,6 +123,11 @@ export class AllEmployees
        await this.continue.click();
        await this.probationPeriod.fill("90");
        await this.noticePeriod.fill("90");
+       await this.approvalType.click();
+       await this.leaveApproval.click();
+       await this.leaveRequestName.waitFor();
+       await this.leaveRequestName.click();
+
        await this.continue.click();
        await this.save.click();
 

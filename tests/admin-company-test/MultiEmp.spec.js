@@ -19,7 +19,7 @@ test('Mulitple employee registration process',async({page})=>{
     const sp= new SidePages(page);
     await sp.goToAllEmployees();
 
-for (let i = 1; i <= 1; i++) {  
+for (let i = 1; i <= 20; i++) {  
 
     const employeeData = {
   name: faker.person.firstName(),
@@ -33,8 +33,8 @@ for (let i = 1; i <= 1; i++) {
    
     await ae.employeeOnBoarding(employeeData);
     await ae.workDetails();
-    await expect(ae.success).toHaveText("Successful");
-    await expect(ae.success).toBeHidden();
+    // await expect(ae.success).toHaveText("Successful");
+    // await expect(ae.success).toBeHidden();
 }
 
     

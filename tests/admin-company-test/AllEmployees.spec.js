@@ -6,7 +6,7 @@ import {SidePages} from '../../pages/common-pages/SidePages.js'
 import { faker } from '@faker-js/faker';
 
 
-test('Test employee registration process',async({page})=>{
+test.only('Test employee registration process',async({page})=>{
 
     const employeeData = {
   name: faker.person.firstName(),
@@ -37,7 +37,7 @@ test('Test employee registration process',async({page})=>{
 })
 
 
-test.only('Verify approved OT hours count of the employee',async({page})=>{
+test('Verify approved OT hours count of the employee',async({page})=>{
 
     const lp= new LoginPage(page);
     await lp.landingPage();

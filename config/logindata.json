@@ -13,7 +13,8 @@
     "date":"1",
     "joinDate": "2026-06-01",
     "month" : "May",
-    "company":"Qualityat ",
+    "company":"Test Org",
+    "leaveType":"QWERTY",
     "file":"/home/docme/Downloads/Image.jpeg"
 
     
